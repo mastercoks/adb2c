@@ -1,4 +1,4 @@
-import { Configuration, PopupRequest } from "@azure/msal-browser";
+import { Configuration, PopupRequest } from '@azure/msal-browser';
 
 /**
  * Enter here the user flows and custom policies for your B2C application
@@ -6,34 +6,35 @@ import { Configuration, PopupRequest } from "@azure/msal-browser";
  * To learn more about custom policies, visit: https://docs.microsoft.com/en-us/azure/active-directory-b2c/custom-policy-overview
  */
 export const b2cPolicies = {
-    names: {
-        signUpSignIn: "b2c_1_si_gestaoprocessosfranqueados"
+  names: {
+    signUpSignIn: 'b2c_1_new_sisu',
+  },
+  authorities: {
+    signUpSignIn: {
+      authority:
+        'https://testeduorganization.b2clogin.com/testeduorganization.onmicrosoft.com/b2c_1_new_sisu',
     },
-    authorities: {
-        signUpSignIn: {
-            authority: "https://gboticariob2cauthhml.b2clogin.com/gboticariob2cauthhml.onmicrosoft.com/b2c_1_si_gestaoprocessosfranqueados"
-        },
-    },
-    authorityDomain: "gboticariob2cauthhml.b2clogin.com"
-}
+  },
+  authorityDomain: 'testeduorganization.b2clogin.com',
+};
 
 // Config object to be passed to Msal on creation
 export const msalConfig: Configuration = {
-    auth: {
-        clientId: "9df95b5a-3e9a-45d3-8cf5-dafcb7c2519e",
-        authority: b2cPolicies.authorities.signUpSignIn.authority,
-        knownAuthorities: [b2cPolicies.authorityDomain],
-        redirectUri: "https://dworkflow-mgmt-host.grupoboticario.com.br/auth/callback",
-        postLogoutRedirectUri: "https://dworkflow-mgmt-host.grupoboticario.com.br/auth/"
-    },
-    system: {
-        allowNativeBroker: false // Disables WAM Broker
-    }
+  auth: {
+    clientId: 'cc8ee927-db4d-4038-9897-4f5d0ff3b782',
+    authority: b2cPolicies.authorities.signUpSignIn.authority,
+    knownAuthorities: [b2cPolicies.authorityDomain],
+    redirectUri: 'http://localhost:3000',
+    postLogoutRedirectUri: 'http://localhost:3000/auth',
+  },
+  system: {
+    allowNativeBroker: false, // Disables WAM Broker
+  },
 };
 
 // Add here scopes for id token to be used at MS Identity Platform endpoints.
 export const loginRequest: PopupRequest = {
-    scopes: ["openid", "email"]
+  scopes: ['openid', 'email'],
 };
 
 /**
@@ -41,5 +42,5 @@ export const loginRequest: PopupRequest = {
  * The current application coordinates were pre-registered in a B2C tenant.
  */
 export const apiConfig = {
-    uri: 'https://mfe-bff.franqueado.grupoboticario.digital/authentication/signin'
+  uri: 'https://mfe-bff.franqueado.grupoboticario.digital/authentication/signin',
 };
